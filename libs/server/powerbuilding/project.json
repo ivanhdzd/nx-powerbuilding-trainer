@@ -1,0 +1,23 @@
+{
+  "root": "libs/server/powerbuilding",
+  "sourceRoot": "libs/server/powerbuilding/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/server/powerbuilding/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/server/powerbuilding"],
+      "options": {
+        "jestConfig": "libs/server/powerbuilding/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

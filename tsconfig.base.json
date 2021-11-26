@@ -15,7 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@powerbuilding-trainer/shared/core": ["libs/shared/core/src/index.ts"]
+      "@powerbuilding-trainer/server/powerbuilding": [
+        "libs/server/powerbuilding/src/index.ts"
+      ],
+      "@powerbuilding-trainer/shared/core": ["libs/shared/core/src/index.ts"],
+      "@powerbuilding-trainer/shared/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

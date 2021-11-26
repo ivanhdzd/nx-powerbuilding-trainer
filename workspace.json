@@ -4,6 +4,8 @@
     "client-auth": "apps/client/auth",
     "client-auth-e2e": "apps/client/auth-e2e",
     "server-auth": "apps/server/auth",
-    "shared-core": "libs/shared/core"
+    "server-powerbuilding": "libs/server/powerbuilding",
+    "shared-core": "libs/shared/core",
+    "shared-utils": "libs/shared/utils"
   }
 }

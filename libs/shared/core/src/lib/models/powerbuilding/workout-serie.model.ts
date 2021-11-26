@@ -5,7 +5,7 @@ import { IWorkoutExerciseModel } from './workout-exercise.model';
 export interface IWorkoutSerieModel extends IBaseModel {
   index: number;
   reps: number;
-  nodes: string;
+  notes: string;
   microCycle: IMicroCycleModel;
   workoutExercise: IWorkoutExerciseModel;
 }
