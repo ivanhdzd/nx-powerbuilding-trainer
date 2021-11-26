@@ -1,8 +1,3 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import { INestApplication, Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
@@ -13,9 +8,10 @@ async function bootstrap() {
   const globalPrefix: string = 'api';
   app.setGlobalPrefix(globalPrefix);
   const port: number = +process.env.PORT || 3333;
-  await app.listen(port);
-  Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+  await app.listen(port, (): void =>
+    Logger.log(
+      `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+    )
   );
 }
 
