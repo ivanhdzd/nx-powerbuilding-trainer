@@ -1,0 +1,28 @@
+{
+  "root": "apps/client/auth-e2e",
+  "sourceRoot": "apps/client/auth-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/client/auth-e2e/cypress.json",
+        "devServerTarget": "client-auth:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "client-auth:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/client/auth-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["client-auth"]
+}

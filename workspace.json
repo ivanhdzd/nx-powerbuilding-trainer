@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "client-auth": "apps/client/auth",
+    "client-auth-e2e": "apps/client/auth-e2e"
+  }
 }
