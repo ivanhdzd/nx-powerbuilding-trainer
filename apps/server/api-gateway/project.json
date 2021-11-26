@@ -1,0 +1,52 @@
+{
+  "root": "apps/server/api-gateway",
+  "sourceRoot": "apps/server/api-gateway/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/server/api-gateway",
+        "main": "apps/server/api-gateway/src/main.ts",
+        "tsConfig": "apps/server/api-gateway/tsconfig.app.json",
+        "assets": ["apps/server/api-gateway/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/server/api-gateway/src/environments/environment.ts",
+              "with": "apps/server/api-gateway/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "server-api-gateway:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/server/api-gateway/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/server/api-gateway"],
+      "options": {
+        "jestConfig": "apps/server/api-gateway/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -3,6 +3,8 @@
   "projects": {
     "client-auth": "apps/client/auth",
     "client-auth-e2e": "apps/client/auth-e2e",
+    "server-admin": "apps/server/admin",
+    "server-api-gateway": "apps/server/api-gateway",
     "server-auth": "apps/server/auth",
     "server-powerbuilding": "libs/server/powerbuilding",
     "shared-core": "libs/shared/core",
