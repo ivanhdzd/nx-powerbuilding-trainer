@@ -1,11 +1,11 @@
 import {
-  Entity,
   Column,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  ManyToOne,
+  Entity,
   JoinColumn,
   Index,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IMesoCycleModel } from '@powerbuilding-trainer/shared/core';
@@ -18,38 +18,34 @@ import { WorkoutEntity } from '../../workouts/entities/workout.entity';
 export class MesoCycleEntity implements IMesoCycleModel {
   @ApiPropertyOptional()
   @PrimaryGeneratedColumn('uuid', { name: 'id' })
-  public id: string;
+  public id?: string;
 
   @ApiPropertyOptional()
   @Column({ name: 'created_at', default: nowUTC() })
-  public createdAt: Date;
+  public createdAt?: Date;
 
   @ApiPropertyOptional()
   @Column({ name: 'updated_at', default: nowUTC() })
-  public updatedAt: Date;
+  public updatedAt?: Date;
 
   @ApiProperty()
   @Column({ name: 'name', type: 'varchar' })
   public name: string;
 
   @ApiProperty()
-  @Column({ name: 'index', type: 'int' })
-  public index: number;
+  @Column({ name: 'position', type: 'smallint' })
+  public position: number;
 
   @ApiProperty()
   @Index()
   @JoinColumn({ name: 'macro_cycle_id' })
   @ManyToOne((): typeof MacroCycleEntity => MacroCycleEntity, { cascade: true })
-  public macroCycle: MacroCycleEntity;
+  public macroCycle?: MacroCycleEntity;
 
   @ApiPropertyOptional()
   @OneToMany(
     (): typeof WorkoutEntity => WorkoutEntity,
     (workout: WorkoutEntity): MesoCycleEntity => workout.mesoCycle
   )
-  public workouts: WorkoutEntity[];
-
-  constructor(partial: Partial<MesoCycleEntity>) {
-    Object.assign(this, partial);
-  }
+  public workouts?: WorkoutEntity[];
 }

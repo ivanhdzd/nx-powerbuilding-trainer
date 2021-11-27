@@ -4,7 +4,7 @@ import { IWorkoutModel } from './workout.model';
 
 export interface IMesoCycleModel extends IBaseModel {
   name: string;
-  index: number;
-  macroCycle: IMacroCycleModel;
-  workouts: IWorkoutModel[];
+  position: number;
+  macroCycle?: IMacroCycleModel;
+  workouts?: IWorkoutModel[];
 }

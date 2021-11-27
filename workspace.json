@@ -6,6 +6,7 @@
     "server-admin": "apps/server/admin",
     "server-api-gateway": "apps/server/api-gateway",
     "server-auth": "apps/server/auth",
+    "server-core": "libs/server/core",
     "server-powerbuilding": "libs/server/powerbuilding",
     "shared-core": "libs/shared/core",
     "shared-utils": "libs/shared/utils"

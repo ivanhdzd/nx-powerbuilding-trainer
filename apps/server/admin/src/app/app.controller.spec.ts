@@ -1,4 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import {
+  CustomLoggerModule,
+  MICROSERVICES,
+} from '@powerbuilding-trainer/server/core';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -8,6 +12,7 @@ describe(`Testing '${AppController.name}'`, (): void => {
 
   beforeAll(async (): Promise<void> => {
     app = await Test.createTestingModule({
+      imports: [CustomLoggerModule.register(MICROSERVICES.API_GATEWAY)],
       controllers: [AppController],
       providers: [AppService],
     }).compile();

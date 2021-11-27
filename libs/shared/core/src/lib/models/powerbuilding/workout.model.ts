@@ -5,8 +5,8 @@ import { IWorkoutExerciseModel } from './workout-exercise.model';
 
 export interface IWorkoutModel extends IBaseModel {
   name: string;
-  index: number;
-  mesoCycle: IMesoCycleModel;
-  microCycles: IMicroCycleModel[];
-  workoutExercises: IWorkoutExerciseModel[];
+  position: number;
+  mesoCycle?: IMesoCycleModel;
+  microCycles?: IMicroCycleModel[];
+  workoutExercises?: IWorkoutExerciseModel[];
 }

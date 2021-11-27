@@ -1,6 +1,7 @@
 import { toDate } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
 
+/** Default time zone */
 export const defaultTimeZone: string = 'America/Mexico_City';
 
 /**

@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@powerbuilding-trainer/server/core": ["libs/server/core/src/index.ts"],
       "@powerbuilding-trainer/server/powerbuilding": [
         "libs/server/powerbuilding/src/index.ts"
       ],
