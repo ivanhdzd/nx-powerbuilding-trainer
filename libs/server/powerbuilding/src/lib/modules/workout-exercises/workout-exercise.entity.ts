@@ -14,12 +14,11 @@ import {
   IWorkoutExerciseModel,
   WORKOUT_EXERCISE_TYPE,
 } from '@powerbuilding-trainer/shared/core';
-import { nowUTC } from '@powerbuilding-trainer/shared/utils';
 
-import { WorkoutEntity } from '../../workouts/entities/workout.entity';
-import { ExerciseEntity } from '../../exercises/entities/exercise.entity';
-import { WorkoutSerieEntity } from '../../workout-series/entities/workout-serie.entity';
-import { MicroCycleEntity } from '../../micro-cycles/entities/micro-cycle.entity';
+import { WorkoutEntity } from '../workouts/workout.entity';
+import { ExerciseEntity } from '../exercises/exercise.entity';
+import { WorkoutSerieEntity } from '../workout-series/workout-serie.entity';
+import { MicroCycleEntity } from '../micro-cycles/micro-cycle.entity';
 
 @Entity({ name: 'workout_exercises' })
 export class WorkoutExerciseEntity implements IWorkoutExerciseModel {
@@ -28,11 +27,20 @@ export class WorkoutExerciseEntity implements IWorkoutExerciseModel {
   public id?: string;
 
   @ApiPropertyOptional()
-  @Column({ name: 'created_at', default: nowUTC() })
+  @Column({
+    name: 'created_at',
+    type: 'timestamp',
+    default: (): string => 'CURRENT_TIMESTAMP',
+  })
   public createdAt?: Date;
 
   @ApiPropertyOptional()
-  @Column({ name: 'updated_at', default: nowUTC() })
+  @Column({
+    name: 'updated_at',
+    type: 'timestamp',
+    default: (): string => 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+  })
   public updatedAt?: Date;
 
   @ApiProperty()

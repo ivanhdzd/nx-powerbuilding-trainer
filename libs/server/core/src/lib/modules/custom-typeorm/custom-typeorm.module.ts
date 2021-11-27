@@ -1,7 +1,7 @@
 import { Module, DynamicModule, Global } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { EntitySchema, ConnectionOptions } from 'typeorm';
+import { ConnectionOptions } from 'typeorm';
 import { join, resolve } from 'path';
 
 import { CONFIG_KEYS } from '../../enums/config-keys.enum';
@@ -15,7 +15,7 @@ const patternMigrations: string = join(pathMigrations, '**', '*{.ts,.js}');
 @Global()
 @Module({})
 export class CustomTypeOrmModule {
-  public static forRoot(entities?: EntitySchema[]): DynamicModule {
+  public static forRoot(entities?: any[]): DynamicModule {
     return {
       module: CustomTypeOrmModule,
       imports: [

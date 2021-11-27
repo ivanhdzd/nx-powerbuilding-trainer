@@ -11,11 +11,10 @@ import {
 } from 'typeorm';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IMicroCycleModel } from '@powerbuilding-trainer/shared/core';
-import { nowUTC } from '@powerbuilding-trainer/shared/utils';
 
-import { WorkoutSerieEntity } from '../../workout-series/entities/workout-serie.entity';
-import { WorkoutEntity } from '../../workouts/entities/workout.entity';
-import { WorkoutExerciseEntity } from '../../workout-exercises/entities/workout-exercise.entity';
+import { WorkoutSerieEntity } from '../workout-series/workout-serie.entity';
+import { WorkoutEntity } from '../workouts/workout.entity';
+import { WorkoutExerciseEntity } from '../workout-exercises/workout-exercise.entity';
 
 @Entity({ name: 'micro_cycles' })
 export class MicroCycleEntity implements IMicroCycleModel {
@@ -24,11 +23,20 @@ export class MicroCycleEntity implements IMicroCycleModel {
   public id?: string;
 
   @ApiPropertyOptional()
-  @Column({ name: 'created_at', default: nowUTC() })
+  @Column({
+    name: 'created_at',
+    type: 'timestamp',
+    default: (): string => 'CURRENT_TIMESTAMP',
+  })
   public createdAt?: Date;
 
   @ApiPropertyOptional()
-  @Column({ name: 'updated_at', default: nowUTC() })
+  @Column({
+    name: 'updated_at',
+    type: 'timestamp',
+    default: (): string => 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+  })
   public updatedAt?: Date;
 
   @ApiProperty()

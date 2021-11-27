@@ -1,9 +1,8 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IMacroCycleModel } from '@powerbuilding-trainer/shared/core';
-import { nowUTC } from '@powerbuilding-trainer/shared/utils';
 
-import { MesoCycleEntity } from '../../meso-cycles/entities/meso-cycle.entity';
+import { MesoCycleEntity } from '../meso-cycles/meso-cycle.entity';
 
 @Entity({ name: 'macro_cycles' })
 export class MacroCycleEntity implements IMacroCycleModel {
@@ -12,11 +11,20 @@ export class MacroCycleEntity implements IMacroCycleModel {
   public id?: string;
 
   @ApiPropertyOptional()
-  @Column({ name: 'created_at', default: nowUTC() })
+  @Column({
+    name: 'created_at',
+    type: 'timestamp',
+    default: (): string => 'CURRENT_TIMESTAMP',
+  })
   public createdAt?: Date;
 
   @ApiPropertyOptional()
-  @Column({ name: 'updated_at', default: nowUTC() })
+  @Column({
+    name: 'updated_at',
+    type: 'timestamp',
+    default: (): string => 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+  })
   public updatedAt?: Date;
 
   @ApiProperty()

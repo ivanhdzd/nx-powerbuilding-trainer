@@ -8,10 +8,9 @@ import {
 } from 'typeorm';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IWorkoutSerieModel } from '@powerbuilding-trainer/shared/core';
-import { nowUTC } from '@powerbuilding-trainer/shared/utils';
 
-import { MicroCycleEntity } from '../../micro-cycles/entities/micro-cycle.entity';
-import { WorkoutExerciseEntity } from '../../workout-exercises/entities/workout-exercise.entity';
+import { MicroCycleEntity } from '../micro-cycles/micro-cycle.entity';
+import { WorkoutExerciseEntity } from '../workout-exercises/workout-exercise.entity';
 
 @Entity({ name: 'workout_series' })
 export class WorkoutSerieEntity implements IWorkoutSerieModel {
@@ -20,13 +19,21 @@ export class WorkoutSerieEntity implements IWorkoutSerieModel {
   public id?: string;
 
   @ApiPropertyOptional()
-  @Column({ name: 'created_at', default: nowUTC() })
+  @Column({
+    name: 'created_at',
+    type: 'timestamp',
+    default: (): string => 'CURRENT_TIMESTAMP',
+  })
   public createdAt?: Date;
 
   @ApiPropertyOptional()
-  @Column({ name: 'updated_at', default: nowUTC() })
+  @Column({
+    name: 'updated_at',
+    type: 'timestamp',
+    default: (): string => 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+  })
   public updatedAt?: Date;
-
   @ApiProperty()
   @Column({ name: 'position', type: 'smallint' })
   public position: number;

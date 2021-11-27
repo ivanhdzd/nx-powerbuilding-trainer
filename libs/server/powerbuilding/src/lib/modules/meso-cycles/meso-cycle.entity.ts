@@ -9,10 +9,9 @@ import {
 } from 'typeorm';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IMesoCycleModel } from '@powerbuilding-trainer/shared/core';
-import { nowUTC } from '@powerbuilding-trainer/shared/utils';
 
-import { MacroCycleEntity } from '../../macro-cycles/entities/macro-cycle.entity';
-import { WorkoutEntity } from '../../workouts/entities/workout.entity';
+import { MacroCycleEntity } from '../macro-cycles/macro-cycle.entity';
+import { WorkoutEntity } from '../workouts/workout.entity';
 
 @Entity({ name: 'meso_cycles' })
 export class MesoCycleEntity implements IMesoCycleModel {
@@ -21,11 +20,20 @@ export class MesoCycleEntity implements IMesoCycleModel {
   public id?: string;
 
   @ApiPropertyOptional()
-  @Column({ name: 'created_at', default: nowUTC() })
+  @Column({
+    name: 'created_at',
+    type: 'timestamp',
+    default: (): string => 'CURRENT_TIMESTAMP',
+  })
   public createdAt?: Date;
 
   @ApiPropertyOptional()
-  @Column({ name: 'updated_at', default: nowUTC() })
+  @Column({
+    name: 'updated_at',
+    type: 'timestamp',
+    default: (): string => 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+  })
   public updatedAt?: Date;
 
   @ApiProperty()

@@ -6,6 +6,10 @@ import {
   CustomTypeOrmModule,
   MICROSERVICES,
 } from '@powerbuilding-trainer/server/core';
+import {
+  PowerbuildingModule,
+  POWERBUILDING_ENTITIES,
+} from '@powerbuilding-trainer/server/powerbuilding';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -14,7 +18,8 @@ import { AppService } from './app.service';
   imports: [
     ConfigModule.forRoot({ load: [configFactory] }),
     CustomLoggerModule.register(MICROSERVICES.ADMIN),
-    CustomTypeOrmModule.forRoot(),
+    CustomTypeOrmModule.forRoot(POWERBUILDING_ENTITIES),
+    PowerbuildingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

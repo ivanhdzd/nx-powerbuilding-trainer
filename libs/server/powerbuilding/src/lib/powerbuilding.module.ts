@@ -9,8 +9,6 @@ import { WorkoutSeriesModule } from './modules/workout-series/workout-series.mod
 import { WorkoutsModule } from './modules/workouts/workouts.module';
 
 @Module({
-  controllers: [],
-  providers: [],
   imports: [
     ExercisesModule,
     MacroCyclesModule,
@@ -20,6 +18,14 @@ import { WorkoutsModule } from './modules/workouts/workouts.module';
     WorkoutSeriesModule,
     WorkoutsModule,
   ],
-  exports: [],
+  exports: [
+    ExercisesModule,
+    MacroCyclesModule,
+    MesoCyclesModule,
+    MicroCyclesModule,
+    WorkoutExercisesModule,
+    WorkoutSeriesModule,
+    WorkoutsModule,
+  ],
 })
 export class PowerbuildingModule {}
