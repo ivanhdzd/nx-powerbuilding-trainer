@@ -25,6 +25,7 @@ export class CustomTypeOrmModule {
           inject: [ConfigService],
           useFactory: (configService: ConfigService): ConnectionOptions => ({
             type: 'mysql',
+            timezone: 'UTC',
             host: configService.get<string>(CONFIG_KEYS.DB_HOST),
             port: configService.get<number>(CONFIG_KEYS.DB_PORT),
             username: configService.get<string>(CONFIG_KEYS.DB_USERNAME),
