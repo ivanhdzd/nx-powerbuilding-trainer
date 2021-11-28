@@ -6,17 +6,18 @@ import {
   MICROSERVICES,
 } from '@powerbuilding-trainer/server/core';
 
-import { ClientMicroservicesModule } from './modules/client-microservices.module';
-import { AppController } from './app.controller';
+import { ClientAdminProvider } from './providers/clients/admin.provider';
 import { AppService } from './app.service';
+import { AppController } from './app.controller';
+import { MacroCyclesModule } from './api/macro-cycles/macro-cycles.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ load: [configFactory] }),
-    ClientMicroservicesModule.register(configFactory()),
     CustomLoggerModule.register(MICROSERVICES.API_GATEWAY),
+    MacroCyclesModule,
   ],
+  providers: [ClientAdminProvider, AppService],
   controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
