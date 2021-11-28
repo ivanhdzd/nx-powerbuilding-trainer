@@ -1,7 +1,10 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { LoggerClass, MICROSERVICES } from '@powerbuilding-trainer/server/core';
-import { MacroCycleEntity } from '@powerbuilding-trainer/server/powerbuilding';
+import {
+  CreateMacroCycleDTO,
+  MacroCycleEntity,
+} from '@powerbuilding-trainer/server/powerbuilding';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -19,6 +22,17 @@ export class MacroCyclesService extends LoggerClass {
     return this.powerbuildingService.send<MacroCycleEntity[]>(
       { cmd: 'getAllMacroCycles' },
       {}
+    );
+  }
+
+  public create(
+    createMacroCycleDTO: CreateMacroCycleDTO
+  ): Observable<MacroCycleEntity> {
+    this.logger.debug('Getting all macro cycles list', 'create');
+    this.logger.log(createMacroCycleDTO, 'create');
+    return this.powerbuildingService.send<MacroCycleEntity>(
+      { cmd: 'createMacroCycle' },
+      createMacroCycleDTO
     );
   }
 }

@@ -8,3 +8,6 @@ export interface IMesoCycleModel extends IBaseModel {
   macroCycle?: IMacroCycleModel;
   workouts?: IWorkoutModel[];
 }
+
+export type TMesoCycleModelObjectModelProps = 'macroCycle';
+export type TMesoCycleModelArrayModelProps = 'workouts';

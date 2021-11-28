@@ -5,3 +5,5 @@ export interface IMacroCycleModel extends IBaseModel {
   name: string;
   mesoCycles?: IMesoCycleModel[];
 }
+
+export type TMacroCycleModelArrayModelProps = 'mesoCycles';

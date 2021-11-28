@@ -23,9 +23,14 @@ class LoggerFacadeService implements LoggerService {
    * @param {string} trace (optional) error trace.
    * @param {string} context (optional) it's used to set context class and/or method name.
    */
-  public error(message: any, trace?: string, context?: string): void {
+  public error(
+    message: any,
+    trace?: string,
+    ...optionalParams: [...any, string?]
+  ): void {
+    let context: string = optionalParams?.length ? optionalParams.pop() : '';
     context = this._getContext(context);
-    this.logger.error(message, trace, context);
+    this.logger.error(message, trace, ...[...optionalParams, context]);
   }
 
   /**
@@ -33,9 +38,10 @@ class LoggerFacadeService implements LoggerService {
    * @param {any} message for logger.
    * @param {string} context (optional) it's used to set context class and/or method name.
    */
-  public log(message: any, context?: string): void {
+  public log(message: any, ...optionalParams: [...any, string?]): void {
+    let context: string = optionalParams?.length ? optionalParams.pop() : '';
     context = this._getContext(context);
-    this.logger.log(message, context);
+    this.logger.log(message, ...[...optionalParams, context]);
   }
 
   /**
@@ -43,9 +49,10 @@ class LoggerFacadeService implements LoggerService {
    * @param {any} message for logger.
    * @param {string} context (optional) it's used to set context class and/or method name.
    */
-  public warn(message: any, context?: string): void {
+  public warn(message: any, ...optionalParams: [...any, string?]): void {
+    let context: string = optionalParams?.length ? optionalParams.pop() : '';
     context = this._getContext(context);
-    this.logger.warn(message, context);
+    this.logger.warn(message, ...[...optionalParams, context]);
   }
 
   /**
@@ -53,9 +60,10 @@ class LoggerFacadeService implements LoggerService {
    * @param {any} message for logger.
    * @param {string} context (optional) it's used to set context class and/or method name.
    */
-  public debug(message: any, context?: string): void {
+  public debug(message: any, ...optionalParams: [...any, string?]): void {
+    let context: string = optionalParams?.length ? optionalParams.pop() : '';
     context = this._getContext(context);
-    this.logger.debug(message, context);
+    this.logger.debug(message, ...[...optionalParams, context]);
   }
 
   /**
@@ -63,9 +71,10 @@ class LoggerFacadeService implements LoggerService {
    * @param {any} message for logger.
    * @param {string} context (optional) it's used to set context class and/or method name.
    */
-  public verbose(message: any, context?: string): void {
+  public verbose(message: any, ...optionalParams: [...any, string?]): void {
+    let context: string = optionalParams?.length ? optionalParams.pop() : '';
     context = this._getContext(context);
-    this.logger.verbose(message, context);
+    this.logger.verbose(message, ...[...optionalParams, context]);
   }
 
   //#endregion PUBLIC
@@ -78,7 +87,9 @@ class LoggerFacadeService implements LoggerService {
    * @returns {string} context formatted.
    */
   private _getContext(context: string): string {
-    return context ? `${this.classContext}.${context}` : this.classContext;
+    return context && typeof context === 'string'
+      ? `${this.classContext}.${context}`
+      : this.classContext;
   }
 
   //#endregion PRIVATE

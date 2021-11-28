@@ -1,7 +1,18 @@
-import { Controller, Get, Logger } from '@nestjs/common';
+import {
+  Body,
+  ClassSerializerInterceptor,
+  Controller,
+  Get,
+  Logger,
+  Post,
+  UseInterceptors,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { LoggerClass } from '@powerbuilding-trainer/server/core';
-import { MacroCycleEntity } from '@powerbuilding-trainer/server/powerbuilding';
+import {
+  CreateMacroCycleDTO,
+  MacroCycleEntity,
+} from '@powerbuilding-trainer/server/powerbuilding';
 import { Observable } from 'rxjs';
 
 import { MacroCyclesService } from './macro-cycles.service';
@@ -26,5 +37,22 @@ export class MacroCyclesController extends LoggerClass {
   public getAll(): Observable<MacroCycleEntity[]> {
     this.logger.debug('Getting all macro cycles list', 'getAll');
     return this.macroCyclesService.getAll();
+  }
+
+  @ApiOperation({ summary: 'Create new macro cycle.' })
+  @ApiResponse({
+    status: 200,
+    isArray: false,
+    type: MacroCycleEntity,
+    description: 'Macro cycle',
+  })
+  @Post()
+  @UseInterceptors(ClassSerializerInterceptor)
+  public create(
+    @Body() createMacroCycleDTO: CreateMacroCycleDTO
+  ): Observable<MacroCycleEntity> {
+    this.logger.debug('Creating macro cycle', 'create');
+    this.logger.debug(createMacroCycleDTO, 'create');
+    return this.macroCyclesService.create(createMacroCycleDTO);
   }
 }

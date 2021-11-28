@@ -6,3 +6,5 @@ export interface IExerciseModel extends IBaseModel {
   description?: string;
   workoutExercises?: IWorkoutExerciseModel[];
 }
+
+export type TExerciseModelArrayModelProps = 'workoutExercises';

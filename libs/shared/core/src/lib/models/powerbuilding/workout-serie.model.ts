@@ -9,3 +9,7 @@ export interface IWorkoutSerieModel extends IBaseModel {
   microCycle?: IMicroCycleModel;
   workoutExercise?: IWorkoutExerciseModel;
 }
+
+export type TWorkoutSerieModelObjectModelProps =
+  | 'microCycle'
+  | 'workoutExercise';

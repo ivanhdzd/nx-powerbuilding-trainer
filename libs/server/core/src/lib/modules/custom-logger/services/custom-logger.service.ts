@@ -18,10 +18,15 @@ export class CustomLoggerService extends Logger implements LoggerService {
    * @param {string} trace (optional) error trace.
    * @param {string} context (optional) it's used to set context class and/or method name.
    */
-  public error(message: any, trace?: string, context?: string): void {
+  public error(
+    message: any,
+    trace?: string,
+    ...optionalParams: [...any, string?]
+  ): void {
+    let context: string = optionalParams?.length ? optionalParams.pop() : '';
     context = this._getContext(context);
     // TODO: Adds winston implementation here!
-    super.error(message, trace, context);
+    super.error(message, trace, ...[...optionalParams, context]);
   }
 
   /**
@@ -29,10 +34,11 @@ export class CustomLoggerService extends Logger implements LoggerService {
    * @param {any} message for logger.
    * @param {string} context (optional) it's used to set context class and/or method name.
    */
-  public log(message: any, context?: string): void {
+  public log(message: any, ...optionalParams: [...any, string?]): void {
+    let context: string = optionalParams?.length ? optionalParams.pop() : '';
     context = this._getContext(context);
     // TODO: Adds winston implementation here!
-    super.log(message, context);
+    super.log(message, ...[...optionalParams, context]);
   }
 
   /**
@@ -40,10 +46,11 @@ export class CustomLoggerService extends Logger implements LoggerService {
    * @param {any} message for logger.
    * @param {string} context (optional) it's used to set context class and/or method name.
    */
-  public warn(message: any, context?: string): void {
+  public warn(message: any, ...optionalParams: [...any, string?]): void {
+    let context: string = optionalParams?.length ? optionalParams.pop() : '';
     context = this._getContext(context);
     // TODO: Adds winston implementation here!
-    super.warn(message, context);
+    super.warn(message, ...[...optionalParams, context]);
   }
 
   /**
@@ -51,10 +58,11 @@ export class CustomLoggerService extends Logger implements LoggerService {
    * @param {any} message for logger.
    * @param {string} context (optional) it's used to set context class and/or method name.
    */
-  public debug(message: any, context?: string): void {
+  public debug(message: any, ...optionalParams: [...any, string?]): void {
+    let context: string = optionalParams?.length ? optionalParams.pop() : '';
     context = this._getContext(context);
     // TODO: Adds winston implementation here!
-    super.debug(message, context);
+    super.debug(message, ...[...optionalParams, context]);
   }
 
   /**
@@ -62,10 +70,11 @@ export class CustomLoggerService extends Logger implements LoggerService {
    * @param {any} message for logger.
    * @param {string} context (optional) it's used to set context class and/or method name.
    */
-  public verbose(message: any, context?: string): void {
+  public verbose(message: any, ...optionalParams: [...any, string?]): void {
+    let context: string = optionalParams?.length ? optionalParams.pop() : '';
     context = this._getContext(context);
     // TODO: Adds winston implementation here!
-    super.verbose(message, context);
+    super.verbose(message, ...[...optionalParams, context]);
   }
 
   //#endregion PUBLIC
@@ -78,7 +87,9 @@ export class CustomLoggerService extends Logger implements LoggerService {
    * @returns {string} context formatted.
    */
   private _getContext(context: string): string {
-    return context ? `${this.moduleContext}::${context}` : this.moduleContext;
+    return context && typeof context === 'string'
+      ? `${this.moduleContext}::${context}`
+      : this.moduleContext;
   }
 
   //#endregion PRIVATE
