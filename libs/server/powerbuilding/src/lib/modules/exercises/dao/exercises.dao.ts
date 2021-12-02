@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { FindOneOptions } from 'typeorm';
+import { FindManyOptions, FindOneOptions } from 'typeorm';
 
+import { SORT_ORDER } from '../../../enums/sort-order.enum';
 import { ExerciseEntity } from '../exercise.entity';
 import { ExercisesRepository } from '../exercises.repository';
 import { LibExercisesDAO } from './lib.exercises.dao';
@@ -16,7 +17,12 @@ export class ExercisesDAO extends LibExercisesDAO {
 
   public async getAll(): Promise<ExerciseEntity[]> {
     this.logger.debug('Getting all exercises list', 'getAll');
-    return this.exercisesRepository.find();
+    const options: FindManyOptions<ExerciseEntity> = {
+      order: {
+        name: SORT_ORDER.ASC,
+      },
+    };
+    return this.exercisesRepository.find(options);
   }
 
   public async getById(id: string): Promise<ExerciseEntity> {

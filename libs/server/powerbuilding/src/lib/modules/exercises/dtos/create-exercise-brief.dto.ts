@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 import { Expose } from 'class-transformer';
 import {
   IExerciseModel,
@@ -20,6 +20,7 @@ export class CreateExerciseBriefDTO implements TCreateExerciseBriefDTO {
 
   @ApiPropertyOptional()
   @Expose()
+  @IsOptional()
   @IsString()
   public description?: string;
   constructor(dto: CreateExerciseBriefDTO) {

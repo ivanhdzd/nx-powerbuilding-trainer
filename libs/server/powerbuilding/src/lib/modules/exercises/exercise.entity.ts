@@ -15,6 +15,7 @@ export class ExerciseEntity implements IExerciseModel {
     name: 'created_at',
     type: 'timestamp',
     default: (): string => 'CURRENT_TIMESTAMP',
+    update: false,
   })
   public createdAt?: Date;
 
@@ -28,11 +29,11 @@ export class ExerciseEntity implements IExerciseModel {
   public updatedAt?: Date;
 
   @ApiProperty()
-  @Column({ name: 'name', type: 'varchar' })
+  @Column({ name: 'name', type: 'varchar', unique: true })
   public name: string;
 
   @ApiPropertyOptional()
-  @Column({ name: 'description', type: 'text' })
+  @Column({ name: 'description', type: 'text', nullable: true })
   public description?: string;
 
   @ApiPropertyOptional()
