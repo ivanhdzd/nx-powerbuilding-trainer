@@ -4,6 +4,7 @@ import {
   Controller,
   Get,
   Logger,
+  Param,
   Post,
   UseInterceptors,
 } from '@nestjs/common';
@@ -39,9 +40,22 @@ export class MacroCyclesController extends LoggerClass {
     return this.macroCyclesService.getAll();
   }
 
-  @ApiOperation({ summary: 'Create new macro cycle.' })
+  @ApiOperation({ summary: 'Get macro cycle details.' })
   @ApiResponse({
     status: 200,
+    isArray: false,
+    type: MacroCycleEntity,
+    description: 'Macro cycle details',
+  })
+  @Get(':id')
+  public getById(@Param('id') id: string): Observable<MacroCycleEntity> {
+    this.logger.debug(`Getting macro cycle by ID: ${id}`, 'getById');
+    return this.macroCyclesService.getById(id);
+  }
+
+  @ApiOperation({ summary: 'Create new macro cycle.' })
+  @ApiResponse({
+    status: 201,
     isArray: false,
     type: MacroCycleEntity,
     description: 'Macro cycle',

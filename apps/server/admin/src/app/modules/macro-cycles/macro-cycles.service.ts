@@ -20,6 +20,11 @@ export class MacroCyclesService extends LoggerClass {
     return this.macroCyclesService.getAll();
   }
 
+  public async getById(id: string): Promise<MacroCycleEntity> {
+    this.logger.debug(`Getting macro cycle by ID: ${id}`, 'getById');
+    return this.macroCyclesService.getById(id);
+  }
+
   public async create(
     createMacroCycleDTO: CreateMacroCycleDTO
   ): Promise<MacroCycleEntity> {

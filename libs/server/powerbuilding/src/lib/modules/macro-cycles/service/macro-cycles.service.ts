@@ -19,6 +19,11 @@ export class MacroCyclesService extends LibMacroCyclesService {
     return this.macroCyclesDAO.getAll();
   }
 
+  public async getById(id: string): Promise<MacroCycleEntity> {
+    this.logger.debug(`Getting macro cycle by ID: ${id}`, 'getById');
+    return this.macroCyclesDAO.getById(id);
+  }
+
   public async create(
     createMacroCycleDTO: CreateMacroCycleDTO
   ): Promise<MacroCycleEntity> {

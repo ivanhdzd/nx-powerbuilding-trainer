@@ -23,6 +23,12 @@ export class MacroCyclesController extends LoggerClass {
     return this.macroCyclesService.getAll();
   }
 
+  @MessagePattern({ cmd: 'getMacroCycleById' })
+  public async getById(id: string): Promise<MacroCycleEntity> {
+    this.logger.debug(`Getting macro cycle by ID: ${id}`, 'getById');
+    return this.macroCyclesService.getById(id);
+  }
+
   @MessagePattern({ cmd: 'createMacroCycle' })
   public async create(
     createMacroCycleDTO: CreateMacroCycleDTO

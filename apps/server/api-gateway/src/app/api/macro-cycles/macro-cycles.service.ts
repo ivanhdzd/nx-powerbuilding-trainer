@@ -25,6 +25,14 @@ export class MacroCyclesService extends LoggerClass {
     );
   }
 
+  public getById(id: string): Observable<MacroCycleEntity> {
+    this.logger.debug(`Getting macro cycle by ID: ${id}`, 'getById');
+    return this.powerbuildingService.send<MacroCycleEntity>(
+      { cmd: 'getMacroCycleById' },
+      id
+    );
+  }
+
   public create(
     createMacroCycleDTO: CreateMacroCycleDTO
   ): Observable<MacroCycleEntity> {
