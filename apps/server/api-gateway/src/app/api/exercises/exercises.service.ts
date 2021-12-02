@@ -36,7 +36,7 @@ export class ExercisesService extends LoggerClass {
   public createBrief(
     createExerciseBriefDTO: CreateExerciseBriefDTO
   ): Observable<ExerciseEntity> {
-    this.logger.debug('Creating exercise brief', 'createBrief');
+    this.logger.debug('Creating exercise', 'createBrief');
     this.logger.log(createExerciseBriefDTO, 'createBrief');
     return this.powerbuildingService.send<ExerciseEntity>(
       { cmd: 'createExerciseBrief' },
