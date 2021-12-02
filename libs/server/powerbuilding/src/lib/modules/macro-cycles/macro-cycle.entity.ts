@@ -36,7 +36,10 @@ export class MacroCycleEntity implements IMacroCycleModel {
   @Column({ name: 'name', type: 'varchar' })
   public name: string;
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({
+    type: MesoCycleEntity,
+    isArray: true,
+  })
   @Expose()
   @OneToMany(
     (): typeof MesoCycleEntity => MesoCycleEntity,
