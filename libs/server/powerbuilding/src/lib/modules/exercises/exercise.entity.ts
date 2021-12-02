@@ -42,4 +42,8 @@ export class ExerciseEntity implements IExerciseModel {
       workoutExercise.exercise
   )
   public workoutExercises?: WorkoutExerciseEntity[];
+
+  constructor(entity: ExerciseEntity) {
+    Object.assign(this, entity);
+  }
 }

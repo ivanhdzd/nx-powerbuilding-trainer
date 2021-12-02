@@ -11,6 +11,7 @@ import { POWERBUILDING_ENTITIES } from '@powerbuilding-trainer/server/powerbuild
 import { MacroCyclesModule } from './modules/macro-cycles/macro-cycles.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ExercisesModule } from './modules/exercises/exercises.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AppService } from './app.service';
     CustomLoggerModule.register(MICROSERVICES.ADMIN),
     CustomTypeOrmModule.forRoot(POWERBUILDING_ENTITIES),
     MacroCyclesModule,
+    ExercisesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

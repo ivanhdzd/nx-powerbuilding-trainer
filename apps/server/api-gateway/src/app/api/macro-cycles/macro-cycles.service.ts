@@ -36,7 +36,7 @@ export class MacroCyclesService extends LoggerClass {
   public create(
     createMacroCycleDTO: CreateMacroCycleDTO
   ): Observable<MacroCycleEntity> {
-    this.logger.debug('Getting all macro cycles list', 'create');
+    this.logger.debug('Creating macro cycle', 'create');
     this.logger.log(createMacroCycleDTO, 'create');
     return this.powerbuildingService.send<MacroCycleEntity>(
       { cmd: 'createMacroCycle' },
