@@ -3,7 +3,7 @@ import { LoggerClass } from '@powerbuilding-trainer/server/core';
 import {
   MacroCycleEntity,
   LibMacroCyclesService,
-  CreateMacroCycleDTO,
+  CreateMacroCycleBriefDTO,
 } from '@powerbuilding-trainer/server/powerbuilding';
 
 @Injectable()
@@ -25,11 +25,11 @@ export class MacroCyclesService extends LoggerClass {
     return this.macroCyclesService.getById(id);
   }
 
-  public async create(
-    createMacroCycleDTO: CreateMacroCycleDTO
+  public async createBrief(
+    createMacroCycleBriefDTO: CreateMacroCycleBriefDTO
   ): Promise<MacroCycleEntity> {
-    this.logger.log('Creating macro cycle', 'create');
-    this.logger.debug(createMacroCycleDTO, 'create');
-    return this.macroCyclesService.create(createMacroCycleDTO);
+    this.logger.log('Creating macro cycle', 'createBrief');
+    this.logger.debug(createMacroCycleBriefDTO, 'createBrief');
+    return this.macroCyclesService.createBrief(createMacroCycleBriefDTO);
   }
 }

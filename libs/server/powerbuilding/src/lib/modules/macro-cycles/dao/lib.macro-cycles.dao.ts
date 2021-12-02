@@ -7,7 +7,7 @@ import { MacroCycleEntity } from '../macro-cycle.entity';
 export abstract class LibMacroCyclesDAO extends LoggerClass {
   public abstract getAll(): Promise<MacroCycleEntity[]>;
   public abstract getById(id: string): Promise<MacroCycleEntity>;
-  public abstract create(
+  public abstract createBrief(
     macroCycle: MacroCycleEntity
   ): Promise<MacroCycleEntity>;
 }

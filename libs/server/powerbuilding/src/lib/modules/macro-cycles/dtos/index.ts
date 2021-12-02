@@ -1,1 +1,1 @@
-export * from './create-macro-cycle.dto';
+export * from './create-macro-cycle-brief.dto';

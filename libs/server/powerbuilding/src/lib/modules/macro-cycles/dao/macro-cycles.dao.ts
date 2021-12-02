@@ -27,10 +27,12 @@ export class MacroCyclesDAO extends LibMacroCyclesDAO {
     return this.macroCyclesRepository.findOne(id, options);
   }
 
-  public async create(macroCycle: MacroCycleEntity): Promise<MacroCycleEntity> {
+  public async createBrief(
+    macroCycle: MacroCycleEntity
+  ): Promise<MacroCycleEntity> {
     macroCycle = await this.macroCyclesRepository.save(macroCycle);
-    this.logger.log('New macro cycle created', 'create');
-    this.logger.debug(macroCycle, 'create');
+    this.logger.log('New macro cycle created', 'createBrief');
+    this.logger.debug(macroCycle, 'createBrief');
     return macroCycle;
   }
 }

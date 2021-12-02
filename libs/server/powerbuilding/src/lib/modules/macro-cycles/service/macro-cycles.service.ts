@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 
 import { LibMacroCyclesDAO } from '../dao/lib.macro-cycles.dao';
-import { CreateMacroCycleDTO } from '../dtos/create-macro-cycle.dto';
+import { CreateMacroCycleBriefDTO } from '../dtos/create-macro-cycle-brief.dto';
 import { MacroCycleEntity } from '../macro-cycle.entity';
 import { LibMacroCyclesService } from './lib.macro-cycles.service';
 
@@ -24,14 +24,14 @@ export class MacroCyclesService extends LibMacroCyclesService {
     return this.macroCyclesDAO.getById(id);
   }
 
-  public async create(
-    createMacroCycleDTO: CreateMacroCycleDTO
+  public async createBrief(
+    createMacroCycleBriefDTO: CreateMacroCycleBriefDTO
   ): Promise<MacroCycleEntity> {
     const macroCycle: MacroCycleEntity = new MacroCycleEntity(
-      createMacroCycleDTO
+      createMacroCycleBriefDTO
     );
-    this.logger.log('Creating macro cycle entity', 'create');
-    this.logger.debug(macroCycle, 'create');
-    return this.macroCyclesDAO.create(macroCycle);
+    this.logger.log('Creating macro cycle entity', 'createBrief');
+    this.logger.debug(macroCycle, 'createBrief');
+    return this.macroCyclesDAO.createBrief(macroCycle);
   }
 }

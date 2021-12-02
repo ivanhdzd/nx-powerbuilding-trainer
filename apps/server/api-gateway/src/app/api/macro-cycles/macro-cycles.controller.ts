@@ -11,7 +11,7 @@ import {
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { LoggerClass } from '@powerbuilding-trainer/server/core';
 import {
-  CreateMacroCycleDTO,
+  CreateMacroCycleBriefDTO,
   MacroCycleEntity,
 } from '@powerbuilding-trainer/server/powerbuilding';
 import { Observable } from 'rxjs';
@@ -53,20 +53,20 @@ export class MacroCyclesController extends LoggerClass {
     return this.macroCyclesService.getById(id);
   }
 
-  @ApiOperation({ summary: 'Create new macro cycle.' })
+  @ApiOperation({ summary: 'Create new macro cycle brief.' })
   @ApiResponse({
     status: 201,
     isArray: false,
     type: MacroCycleEntity,
     description: 'Macro cycle',
   })
-  @Post()
+  @Post('brief')
   @UseInterceptors(ClassSerializerInterceptor)
-  public create(
-    @Body() createMacroCycleDTO: CreateMacroCycleDTO
+  public createBrief(
+    @Body() createMacroCycleBriefDTO: CreateMacroCycleBriefDTO
   ): Observable<MacroCycleEntity> {
-    this.logger.debug('Creating macro cycle', 'create');
-    this.logger.debug(createMacroCycleDTO, 'create');
-    return this.macroCyclesService.create(createMacroCycleDTO);
+    this.logger.debug('Creating macro cycle', 'createBrief');
+    this.logger.debug(createMacroCycleBriefDTO, 'createBrief');
+    return this.macroCyclesService.createBrief(createMacroCycleBriefDTO);
   }
 }
